@@ -6,8 +6,9 @@ Whilst working on other projects, I usually found myself having to write user lo
 speed things up. I made this one with simplicity in mind as a lot of API Boilerplates for user management seemed too complex for my
 use cases.
 
-## Running the Project 
-Make sure you have latest version of Node.js installed
+## Running the Project
+Clone the Repo.
+Make sure you have latest version of Node.js installed.
 
 ### Install Dependencies
 ```
