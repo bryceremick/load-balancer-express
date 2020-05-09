@@ -1,8 +1,8 @@
 config:
     target: 'http://localhost:3000'
     phases:
-      - duration: 20
-        arrivalRate: 20
+      - duration: 10
+        arrivalRate: 1000
 scenarios:
   - name: "Calculation"
     flow:

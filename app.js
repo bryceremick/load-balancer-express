@@ -1,5 +1,8 @@
+// import cluster module
 const cluster = require('cluster')
+// max number of workers
 const numCPUs = require('os').cpus().length;
+// const numCPUs = 1
 
 const express = require('express')
 const cookieParser = require('cookie-parser')
@@ -13,7 +16,7 @@ const index = require('./routes/index')
 const calc = require('./routes/calc')
 
 if (cluster.isMaster) {
-    console.log(`Master ${process.pid} is running`);
+    console.log(`Master_${process.pid} started`);
 
   // Fork workers.
   for (let i = 0; i < numCPUs; i++) {
@@ -28,6 +31,7 @@ if (cluster.isMaster) {
     createServerInstance(3000)
 }
 
+// Create worker servers
 function createServerInstance(port) {
   const app = express()
   app.use(bodyParser.json())
@@ -37,7 +41,8 @@ function createServerInstance(port) {
 
   app.use('/', index)
   app.use('/calc', calc)
-  app.listen(port)
-
-  console.log(`Worker ${process.pid} started`);
+  
+  let server = app.listen(port , () => {
+    console.log(`Worker_${process.pid} started`);
+  })
 }

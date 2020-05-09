@@ -1,17 +1,19 @@
 const express = require("express");
 const router = express.Router()
 
-router.get("/", (req, res) => {
+let n = 1000000
+let arr = Array.from({length: n}, () => Math.floor(Math.random() * n))
+
+router.get("/", async (req, res) => {
   console.log('hello from proccess ' + process.pid)
-  // syncWait(5000)
+
+  let sum = 0
+  arr.forEach(el => {
+    sum += el
+  })
   res.status(200).json({
-    message: "Calculation"
+    sum: sum
   });
 });
-
-const syncWait = ms => {
-  const end = Date.now() + ms
-  while (Date.now() < end) continue
-}
 
 module.exports = router
